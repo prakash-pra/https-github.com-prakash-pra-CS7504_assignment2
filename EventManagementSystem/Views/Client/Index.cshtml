@@ -49,6 +49,7 @@
                     <div class="col-md-9">
                         @Html.TextBoxFor(model => model.name, null, new { @class = "form-control", @placeholder = "Name" })
                         @*<input type="text" name="name" class="form-control" placeholder="Name" />*@
+                        @*<input type="text" name="name" class="form-control" placeholder="Name" />*@
                         @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
                     </div>
                 </div>
