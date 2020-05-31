@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@model EventManagementSystem.Models.Registration
+<!-- Main Heading -->
+<div class="text-center text-muted event-main-heading" style="margin:100px 0 80px 50px;">
+    <h3>Add Event Details....</h3>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1" id="showAlert">
+                <div class="alert alert-success" role="alert">
+                    Event successfully created.
+                </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    setTimeout(function () {
+        $('#showAlert').hide();
+    }, 3000);
+</script>
+<!-- main container -->
+<div class="container" style="margin-top:40px;">
+    <div class="row">
+       
+        <div class="col-md-10 pull-right main-form">
+            <form>
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-md-offset-2">
+                        <p sstyle="margin-top: 5px;">Fields marked with <span style="color:red;">*</span> are mandatory.</p>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2 text-center">
+                            <label class="text-muted">Name</label> <span style="color:red;">*</span>
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.name, null, new { @class = "form-control", @placeholder = "Name", @id = "name" })
+                            @*<input type="text" name="name" class="form-control" placeholder="Name" />*@
+                            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-2 text-center">
+                            <label class="text-muted">Guest Number</label> <span style="color:red;">*</span>
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.guestnumber, null, new { @class = "form-control", @placeholder = "Guest Number", @id = "guestnumber" })
+                            @*<input type="text" name="guestnumber" class="form-control" placeholder="Guest Number" />*@
+                            @Html.ValidationMessageFor(model => model.guestnumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-2 text-center">
+                            <label class="text-muted">Amount</label> <span style="color:red;">*</span>
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.payment, null, new { @class = "form-control", @placeholder = "Amount", @id = "payment" })
+                            @*<input type="text" name="payment" class="form-control" placeholder="Amount" />*@
+                            @Html.ValidationMessageFor(model => model.payment, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-2 text-center">
+                            <label class="text-muted">Email</label> <span style="color:red;">*</span>
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.email, null, new { @class = "form-control", @placeholder = "Email", @id = "eventEmail" })
+                            @*<input type="text" name="email" class="form-control" placeholder="Email" />*@
+                            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="col-md-10 pull-right btn-section">
+                <button onclick="addEvent()" class="btn">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#showAlert').hide;
+    })
+
+    function addEvent() {
+        var name = $('#name').val();
+        var email = $('#eventEmail').val();
+        var payment = $('#payment').val();
+        var guestnumber = $('#guestnumber').val();
+
+        console.log(name, email, payment, guestnumber);
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("AddEvents")',
+            data: { name: name, email: email, guestnumber: guestnumber, amount: payment},
+            dataType: "json",
+            success: function (data) {
+                console.log("success" + data.status);
+                $('#name').val("");
+                $('#eventEmail').val("");
+                $('#payment').val("");
+                $('#guestnumber').val("");
+                $("#showAlert").show();
+            },
+            error: function () {
+            console.log("failed");
+            }
+            });
+            return false;
+   }
+</script>
+

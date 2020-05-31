@@ -1,0 +1,207 @@
+﻿
+@{
+    ViewBag.Title = "AllClient";
+}
+
+<div class="text-center text-muted event-main-heading" style="margin:100px 0 80px 0;">
+    <h3>All Clients Detail.....</h3>
+</div>
+
+<!-- Modal delete-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background:#7ed56f">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title text-muted" id="myModalLabel" style="color:#fff">Delete Client</h3>
+            </div>
+            <form action="/Client/DeleteClient" method="post">
+                <div class="modal-body">
+
+                    <input type="hidden" id="email" class="form-control" name="email" />
+                    <h3 class="text-muted">You want to remove this client.</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn">Yes</button>
+                    <button type="button" class="btn" data-dismiss="modal">No</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal edit-->
+<div class="modal fade" id="myModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background:#7ed56f">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title text-muted" id="myModalLabel" style="color:#fff">Edit Client</h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="row" style="margin-top:20px;">
+                        <div class="form-group">
+                            <div class="col-md-2 text-center">
+                                <label class="text-muted">Name</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Name" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-2 text-center">
+                                <label class="text-muted">Email</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" id="clientEmail" class="form-control" placeholder="Email" disabled/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-2 text-center">
+                                <label class="text-muted">Age</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="number" id="age" name="age" class="form-control" placeholder="Age" disabled />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-2 text-center">
+                                <label class="text-muted">Address</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" id="address" name="address" class="form-control" placeholder="Address" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-2 text-center">
+                                <label class="text-muted">Phone Number</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="number" id="phone" name="phone" class="form-control" placeholder="Phone Number" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" onclick="editClient()">Edit</button>
+                <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{ string url = Request.Params["status"];}
+
+
+<div class="container" id="msgSuccess">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            @if (url == "success")
+            {
+                <div class="alert alert-success" role="alert">
+                    Client Successfully Deleted.
+                </div>
+            }
+            @if (url == "successEdit")
+            {
+                <div class="alert alert-success" role="alert">
+                    Client Successfully Edited.
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    setTimeout(function () {
+        $('#msgSuccess').fadeOut('fast');
+    }, 5000);
+</script>
+<!-- main container -->
+<div class="container-fluid" style="background: #f5f5f5;">
+    <div class="row" style="margin-top:20px;">
+        @foreach (var client in @Model)
+        {
+            <div class="col-md-4">
+                <div class="thumbnail">
+                    <div class="caption" style="color:#77778D">
+                        <h4>Name: <span>@client.name</span></h4>
+                        <h4>Email: @client.email</h4>
+                        <h4>Address: @client.address</h4>
+                        <h4>Phone Number: @client.phone</h4>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-3 col-md-offset-2 text-center">
+                                <a href="javascript:void(0);" onclick="deleteClient('@client.email')" id="btn-delete" data-toggle="modal" data-target="#myModal" role="button"><i class="fa fa-trash" style="font-size:22px; color:#7ed56f"></i></a>
+                            </div>
+                            <div class="col-md-3 col-md-offset-2 text-left">
+                                <a href="#" onclick="getClient('@client.email')" data-toggle="modal" data-target="#myModalEdit" role="button"><i class="fa fa-pencil" style="font-size:22px; color:#7ed56f"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<script type="text/javascript">
+    function deleteClient(email) {
+        $("#email").val(email)
+    }
+
+    function getClient(email) {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("GetClient")',
+            data: { email: email },
+                dataType: "json",
+             success: function (data) {
+                 EditForm(data.result);
+                },
+                error: function () {
+                    alert("Unable to get a client");
+                }
+            });
+            return false;
+    }
+
+    function EditForm(client) {
+        $("#clientEmail").val(client.email);
+        $("#name").val(client.name);
+        $("#age").val(client.age);
+        $("#address").val(client.address);
+        $("#phone").val(client.phone);
+    }
+
+    function editClient() {
+        var email = $('#clientEmail').val();
+        var address = $('#address').val();
+        var phone = $('#phone').val();
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("UpdateClient")',
+            data: { email: email, address:address, phone:phone },
+            dataType: "json",
+            success: function () {
+                console.log("success");
+                $('#myModalEdit').remove();
+                },
+            error: function () {
+                console.log("failed");
+                }
+        });
+        return false;
+    }
+</script>

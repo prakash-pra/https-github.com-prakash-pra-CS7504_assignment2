@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Event Management System</title>
+    <script src="https://use.fontawesome.com/af1ca29d77.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+    <header class="header">
+        <div class="logo-box">
+            <img src="~/Content/Images/logo-white.png" alt="logo" />
+        </div>
+        <div class="navbar">
+            <ul>
+                <li><a>@Html.ActionLink("Home", "Index", "Home")</a></li>
+                <li><a>@Html.ActionLink("Client Registration", "Index", "Client")</a></li>
+                <li><a>@Html.ActionLink("Events Registration", "Index", "Events") </a></li>
+                <li><a>@Html.ActionLink("Search Events", "Index", "SearchEvent") </a></li>
+            </ul>
+        </div>
+        <div class="text-box">
+            <h1 class="heading-primary">
+                <span class="heading-primary-main">Event Management</span>
+                <span class="heading-primary-sub">Find your event in one place.......</span>
+            </h1>
+        </div>
+        @{
+            string url = Request.RawUrl;
+        }
+        @if (url == "/SearchEvent")
+        {
+            <div class="section_src">
+                <form class="form-group">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <input type="text" class="form-control field-search" placeholder="Find Your Event...." />
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-search">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        }
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

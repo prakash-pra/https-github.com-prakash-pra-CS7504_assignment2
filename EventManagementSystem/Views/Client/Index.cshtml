@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@model EventManagementSystem.Models.Client
+<!-- Main Heading -->
+<div class="text-center text-muted event-main-heading" style="margin:100px 0 80px 50px;">
+    <h3>Add Client Detais....</h3>
+</div>
+
+@{ string url = Request.Params["status"];}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            @if (url == "success")
+            {
+                <div class="alert alert-success" role="alert">
+                    Client successfully created.
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- main container -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 pull-right">
+            <button class="btn">@Html.ActionLink("View Clients", "AllClient", "Client")</button>
+        </div>
+    </div>
+</div>
+<div class="container main-container" style="margin-top:40px;">
+    <div class="row">
+        @using (Html.BeginForm("AddClient", "Client", FormMethod.Post))
+        {
+        <div class="col-md-10 pull-right main-form">
+            
+            <div class="row" style="margin-top:20px;">
+                <div class="col-md-offset-2">
+                    <p sstyle="margin-top: 5px;">Fields marked with <span style="color:red;">*</span> are mandatory.</p>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-2 text-center">
+                        <label class="text-muted">Name</label> <span style="color:red;">*</span>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.name, null, new { @class = "form-control", @placeholder = "Name" })
+                        @*<input type="text" name="name" class="form-control" placeholder="Name" />*@
+                        @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-2 text-center">
+                        <label class="text-muted">Email</label> <span style="color:red;">*</span>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.email, null, new { @class = "form-control", @placeholder = "Email" })
+                        @*<input type="email" name="email" class="form-control" placeholder="Email" />*@
+                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-2 text-center">
+                        <label class="text-muted">Age</label> <span style="color:red;">*</span>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.age, null, new { @type = "number", @class = "form-control", @placeholder = "Age" })
+                        @*<input type="number" name="age" class="form-control" placeholder="Age" />*@
+                        @Html.ValidationMessageFor(model => model.age, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-2 text-center">
+                        <label class="text-muted">Address</label> <span style="color:red;">*</span>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.address, null, new { @class = "form-control", @placeholder = "Address" })
+                        @*<input type="text" name="address" class="form-control" placeholder="Address" />*@
+                        @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-2 text-center">
+                        <label class="text-muted">Phone Number</label> <span style="color:red;">*</span>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.phone, null, new { @class = "form-control", @placeholder = "Phone Number" })
+                        @*<input type="number" name="phone" class="form-control" placeholder="Phone Number" />*@
+                        @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10 pull-right btn-section">
+                <button class="btn">Submit</button>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+
+
+
+
+

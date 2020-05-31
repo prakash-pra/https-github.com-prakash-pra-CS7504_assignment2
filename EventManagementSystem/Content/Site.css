@@ -1,0 +1,239 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    /* border and padding are no longer added to the total width or height*/
+}
+
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    /* color: #777;*/
+}
+
+.header {
+    height: 70vh;
+    /* At every point, the height of this box, of this element should be 95% of the viewpoint height*/
+    background-image: linear-gradient(to right bottom, rgb(125,213,112,0.8), rgb(42,181,132,0.8)), url(Images/office.jpg);
+    background-size: cover;
+    background-position: bottom;
+    padding: 30px;
+    position: relative;
+}
+.logo-box img {
+    width: 70px;
+    /*animation: moveFromTop 1s ease-out;*/
+}
+.navbar {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    /*animation: moveFromTop 1s ease-out;*/
+}
+.navbar ul li {
+    display: inline-block;
+    padding: 0 10px;
+    font-size: 16px;
+    font-weight: 600;
+    border-right: 1px solid #888888;
+    text-transform: uppercase;
+    color: #fff;
+    line-height: 1.6;
+    letter-spacing: 0.6px;
+}
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+.navbar ul li a:hover {
+    color: #fffafa;
+}
+.navbar ul li:last-child{
+    border-right: none;
+}
+.text-box{
+    position:absolute;
+    top: 30%;
+    left: 25%;
+    transform: translate(-10%, -30%)
+}
+.heading-primary{
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.heading-primary-main{
+    display: block;
+    font-size: 60px;
+    font-weight: 400;
+    letter-spacing: 25px;
+
+    /*animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;*/
+}
+
+.heading-primary-sub{
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 15px;
+    margin-top: 20px;
+
+    /*animation: moveInRight 1s ease-out;*/
+}
+.section_src {
+    position: absolute;
+    top: 55%;
+    left: 48%;
+    transform: translate(-80%, -50%);
+    margin-top: 70px;
+}
+.section-about{
+    background: #f7f7f7;
+    padding: 25rem 0;
+}
+.heading-secondary {
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    background-image: linear-gradient(to right, #7ed56f,#28b485)
+}
+.main-form{
+    border: 2px solid #f5f5f5;
+}
+.btn-section{
+    margin: 30px 0;
+}
+
+.btn {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: #FFFFFF;
+    padding: 12px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight:400;
+    letter-spacing:2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius:25px;
+}
+.btn a{
+    color: #ffffff;
+    text-decoration: none;
+}
+    .btn:hover {
+        border: none;
+        border-radius: 25px;
+        color: #FFFFFF;
+    }
+.field-search{
+    height:45px !important;
+}
+
+.btn-search {
+    background-color: #FFFFFF;
+    color: #000000;
+    border: 1px solid #7ed56f;
+    border-radius: 25px;
+}
+
+    .btn-search:hover {
+        background-color: #7ed56f;
+        color: white;
+    }
+
+.event-main-heading {
+    font-size: 80px;
+    font-weight: 600;
+    text-transform:uppercase;
+    letter-spacing: 25px;
+    
+}
+    .event-main-heading h3 {
+        padding:10px;
+        display: inline-block;
+        border-left: 20px solid #7ed56f;
+        border-bottom: 2px solid #f5f5f5;
+    }
+    @keyframes moveFromTop {
+        0%{
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    80%{
+        transform: translateY(10px);
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInLeft {
+    0%{
+    opacity: 0;
+    transform: translateX(-100px);
+    }
+    80%{
+        transform: translateX(10px);
+    }
+    100%{
+    opacity: 1;
+    transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    80% {
+        transform: translateX(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+.form-group{
+    margin-top:30px;
+}
+.form-control{
+    height:60px;
+}
+.main-container{
+    position:relative;
+}
+.btn-floating {
+    position: absolute;
+    right:50px;
+    bottom: -650px;
+    width: 80px;
+    height: 80px;
+    background: #4CAF50;
+    padding: 17px;
+    cursor: pointer;
+    border: 1px solid #4CAF50;
+    border-radius: 50%;
+}
+.btn-floating a{
+    text-decoration:none;
+    color: #fff;
+}
+
